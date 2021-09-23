@@ -1,0 +1,52 @@
+* [4/4] Boundary
+  - [X] Boundary z-term implementation
+  - [X] Boundary z-term test
+  - [X] Boundary x-term implementation
+  - [X] Boundary x-term test
+
+* [4/4] Upgrade for variable x and y lengths
+  - [X] Bulk term
+  - [X] Boundary term
+  - [X] Bulk test
+  - [X] Boundary test
+
+* [2/2] Logical floquet
+  - [X] toric.hpp/toric.cpp
+  - [X] toric.cpp test
+* [5/6] Floquet dynamics
+  - [X] Stabilizer
+  - [X] Logical
+  - [X] Initial state
+  - [X] Measurement 
+  - [X] Test
+  - [ ] Generalized exp(iYtheta) state prep
+* [3/3] Floquet dynamics : Perturbation
+  - [X] Onsite X
+  - [X] Onsite Z
+  - [X] Test
+* [1/1] MWPM: Setup
+  - [X] Conversion of input bits to syndrome information
+* [4/4] Toric code update
+   - [X] Add the stabilizer vec that includes the x and y coordinates
+   - [X] print_surface fix
+   - [X] Check that the coordinates are correct
+   - [X] Non-uniform case
+* [4/4] Stabilizer class
+  - [X] Create a class
+  - [X] Make the class version of the stabilizer generations for uniform case.
+  - [X] Test
+  - [X] Non-uniform case
+* [1/7] MWPM: X
+    - [X] distance
+    - [ ] Given a stabilizer, find its closest virtual pair.
+    - [ ] Shortest path 
+    - [ ] Generate all real nodes
+    - [ ] Generate all virtual nodes
+    - [ ] Generate all edges
+    - [ ] node_a
+    - [ ] node_b
+    - [ ] weights for each edge
+* [3/3] Moving away from Armadillo
+  - [X] cx_double: std::complex<double>
+  - [X] cx_dvec: std::vector<cx_double>
+  - [X] Properly link
