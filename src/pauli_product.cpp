@@ -226,10 +226,10 @@ double measure_pp(unsigned int x, unsigned int z, cx_dvec &psi)
 // 	}
 // }
 
-void apply_stabl(int dx, int dy, cx_dvec &psi)
+void apply_stabl_normal(int dx, int dy, cx_dvec &psi)
 {
 	std::default_random_engine gen;
-	std::normal_distribution<double> theta0(0.3, 0.005);
+	std::normal_distribution<double> theta0(0.3 * M_PI, 0.021 * M_PI);
 	unsigned int sx;
 	unsigned int sz;
 	for (int i = 0; i < 2 * dy; i = i + 2)
@@ -239,6 +239,27 @@ void apply_stabl(int dx, int dy, cx_dvec &psi)
 			sz = (1 << (i * dx + j)) | (1 << (((i + 1) % (2 * dy)) * dx + j)) | (1 << (((i + 1) % (2 * dy)) * dx + ((j + 1) % dx))) | (1 << (((i + 2) % (2 * dy)) * dx + j));
 			sx = (1 << (i * dx + j)) | (1 << (((i - 1 + 2 * dy) % (2 * dy)) * dx + ((j + 1) % dx))) | (1 << (i * dx + ((j + 1) % dx))) | (1 << (((i + 1) % (2 * dy)) * dx + ((j + 1) % dx)));
 			apply_ppr(sx, sz, theta0(gen), psi);
+		}
+	}
+}
+
+void apply_stabl_uniform(int dx, int dy, cx_dvec &psi)
+{
+	unsigned int sx;
+	unsigned int sz;
+	double random_value;
+	double theta0_uni;
+	srand((unsigned)time(NULL));
+
+	for (int i = 0; i < 2 * dy; i = i + 2)
+	{
+		for (int j = 0; j < dx; j++)
+		{
+			random_value = (rand() % 200 - 100) / 1000.0;
+			theta0_uni = 0.3 * M_PI + random_value;
+			sz = (1 << (i * dx + j)) | (1 << (((i + 1) % (2 * dy)) * dx + j)) | (1 << (((i + 1) % (2 * dy)) * dx + ((j + 1) % dx))) | (1 << (((i + 2) % (2 * dy)) * dx + j));
+			sx = (1 << (i * dx + j)) | (1 << (((i - 1 + 2 * dy) % (2 * dy)) * dx + ((j + 1) % dx))) | (1 << (i * dx + ((j + 1) % dx))) | (1 << (((i + 1) % (2 * dy)) * dx + ((j + 1) % dx)));
+			apply_ppr(sx, sz, theta0_uni, psi);
 		}
 	}
 }
