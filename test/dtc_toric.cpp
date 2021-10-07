@@ -1,6 +1,6 @@
-#include "include/floquet.hpp"
-#include "include/stabilizer.hpp"
-#include "include/pauli_product.hpp"
+#include "../include/floquet.hpp"
+#include "../include/stabilizer.hpp"
+#include "../include/pauli_product.hpp"
 #include <stdlib.h>
 #include <iostream>
 #include <fstream>
