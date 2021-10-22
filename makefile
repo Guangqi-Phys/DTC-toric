@@ -2,17 +2,21 @@ CXX=g++
 RM=rm -f
 CPPFLAGS=-std=c++11 -O2
 
-tests: test_toric test_floquet dtc_toric
+tests: test_toric test_floquet dtc_toric dtc_toric_mwpm
 	RM *.o
 
 test_toric: toric.o stabilizer.o ./test/test_toric.cpp
 	$(CXX) -o test_toric toric.o stabilizer.o ./test/test_toric.cpp $(CPPFLAGS)
+	
 
 test_floquet: floquet.o pauli_product.o toric.o stabilizer.o ./test/test_floquet.cpp
 	$(CXX) -o test_floquet floquet.o pauli_product.o toric.o stabilizer.o ./test/test_floquet.cpp $(CPPFLAGS)
 
 dtc_toric: floquet.o pauli_product.o toric.o stabilizer.o ./test/dtc_toric.cpp
 	$(CXX) -o dtc_toric floquet.o pauli_product.o toric.o stabilizer.o ./test/dtc_toric.cpp $(CPPFLAGS)
+
+dtc_toric_mwpm: floquet.o pauli_product.o toric.o stabilizer.o ./test/dtc_toric_mwpm.cpp
+	$(CXX) -o dtc_toric_mwpm floquet.o pauli_product.o toric.o stabilizer.o ./test/dtc_toric_mwpm.cpp $(CPPFLAGS)
 
 pauli_product.o: ./src/pauli_product.cpp
 	$(CXX) -c $(CPPFLAGS) ./src/pauli_product.cpp

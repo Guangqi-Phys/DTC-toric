@@ -117,14 +117,14 @@ void apply_ppr(unsigned int x, unsigned int z, double theta, cx_dvec &psi)
 				break;
 			}
 			cx_double temp1, temp2;
-			temp1 = psi[y] * c + psi[y ^ x] * s * phase1; //X ^ { x_k } Z ^ { z_k } psi[y ^ x] \to(-1) ^ { (__builtin_popcount[(y ^ x) & z]) } psi[y]
+			temp1 = psi[y] * c + psi[y ^ x] * s * phase1; // X ^ { x_k } Z ^ { z_k } psi[y ^ x] \to(-1) ^ { (__builtin_popcount[(y ^ x) & z]) } psi[y]
 			temp2 = psi[y ^ x] * c + psi[y] * s * phase2;
 			psi[y] = temp1;
 			psi[y ^ x] = temp2;
 
-			//psi[y] *= c; psi[y] += s * phase1 * psi[y^x];
-			//psi[y^x] += s * phase2 * psi[y];
-			//psi[y^x] *= csc;
+			// psi[y] *= c; psi[y] += s * phase1 * psi[y^x];
+			// psi[y^x] += s * phase2 * psi[y];
+			// psi[y^x] *= csc;
 
 			not_changed[y] = false;
 			not_changed[y ^ x] = false;
@@ -306,6 +306,7 @@ void measure_stabl(int dx, int dy, unsigned int m_stabl, cx_dvec &psi)
 	unsigned int sz;
 	double measure_out;
 	double random_value;
+	m_stabl = 0;
 	for (int i = 0; i < 2 * dy; i = i + 2)
 	{
 		for (int j = 0; j < dx; j++)
