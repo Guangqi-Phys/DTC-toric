@@ -16,7 +16,6 @@ int main()
     int dy = 3;
     unsigned int lx;
     unsigned int lgz = 0;
-    unsigned int m_stabl;
     double random_value;
     double theta0;
     double theta1;
@@ -38,8 +37,9 @@ int main()
 
         // cout << random_value << endl;
 
-        apply_stabl(dx, dy, psi);
-        measure_stabl(dx, dy, m_stabl, psi);
+        apply_stabl_uniform(dx, dy, psi);
+
+        mwpm_decoding(dx, dy, psi);
 
         measur1 = measure_pp(0, lgz, psi);
 
@@ -50,6 +50,10 @@ int main()
             lx = 1 << (1 * dx + i);
             apply_ppr(lx, 0, theta1, psi);
         }
+
+        measure_stabl(dx, dy, m_stabl, psi);
+
+        mwpm_decoding(dx, dy, psi);
 
         measur2 = measure_pp(0, lgz, psi);
 
