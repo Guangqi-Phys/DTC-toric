@@ -15,8 +15,8 @@ test_floquet: floquet.o pauli_product.o toric.o stabilizer.o ./test/test_floquet
 dtc_toric: floquet.o pauli_product.o toric.o stabilizer.o ./test/dtc_toric.cpp
 	$(CXX) -o dtc_toric floquet.o pauli_product.o toric.o stabilizer.o ./test/dtc_toric.cpp $(CPPFLAGS)
 
-dtc_toric_mwpm: floquet.o pauli_product.o toric.o stabilizer.o ./test/dtc_toric_mwpm.cpp
-	$(CXX) -o dtc_toric_mwpm floquet.o pauli_product.o toric.o stabilizer.o ./test/dtc_toric_mwpm.cpp $(CPPFLAGS)
+dtc_toric_mwpm: floquet.o pauli_product.o toric.o stabilizer.o mwpm.o ./test/dtc_toric_mwpm.cpp
+	$(CXX) -o dtc_toric_mwpm floquet.o pauli_product.o toric.o stabilizer.o mwpm.o ./test/dtc_toric_mwpm.cpp $(CPPFLAGS) -framework python
 
 pauli_product.o: ./src/pauli_product.cpp
 	$(CXX) -c $(CPPFLAGS) ./src/pauli_product.cpp
@@ -29,6 +29,9 @@ toric.o: ./src/toric.cpp stabilizer.o
 
 stabilizer.o: ./src/stabilizer.cpp
 	$(CXX) -c $(CPPFLAGS) ./src/stabilizer.cpp
+
+mwpm.o:./src/mwpm.cpp
+	$(CXX) -c $(CPPFLAGS) ./src/mwpm.cpp -framework python
 
 clean:
 	$(RM) *.o test_* exp_*

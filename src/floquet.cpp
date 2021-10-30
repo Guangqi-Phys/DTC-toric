@@ -49,7 +49,7 @@ cx_dvec initial_allzero(int dx, int dz)
 
 cx_dvec initial_allplus(int dx, int dz)
 {
-  cx_dvec psi(1 << (2 * dx * dz), 1.0 / sqrt(pow(2.0, dx * dz)));
+  cx_dvec psi(1 << (2 * dx * dz), 1.0 / sqrt(pow(2.0, 2 * dx * dz)));
   return psi;
 }
 

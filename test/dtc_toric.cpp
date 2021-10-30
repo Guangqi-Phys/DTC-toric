@@ -22,7 +22,7 @@ int main()
     double measur1, measur2;
 
     int distribution = 1; // 1 for normal distribution error
-                          // 0 for uniform distribution erroe
+                          // 0 for uniform distribution error
 
     ofstream outfile;
     outfile.open("data.dat");
@@ -32,7 +32,7 @@ int main()
 
     srand((unsigned)time(NULL));
 
-    cx_dvec psi = initial_allzero(dx, dy);
+    cx_dvec psi = initial_allplus(dx, dy);
 
     for (int i = 1; i < 2 * dy; i = i + 2)
     {
