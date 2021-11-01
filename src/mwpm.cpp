@@ -14,13 +14,19 @@ void mwpm_decoding(int dx, int dy, cx_dvec &psi)
 {
     int i, n_psi;
     int d = psi.size();
+    cout << d << endl;
 
-    for (i = 1; i < d; i++)
+    for (i = 0; i < d; i++)
     {
-        n_psi = mwpm_python(dx, dy, i);
-
-        psi[n_psi] = psi[n_psi] + psi[i];
-        psi[i] = 0;
+        if (psi[i] != 0.0)
+        {
+            n_psi = mwpm_python(dx, dy, i);
+            if (n_psi != i)
+            {
+                psi[n_psi] = sqrt(psi[n_psi] * conj(psi[n_psi]) + psi[i] * conj(psi[i]));
+                psi[i] = 0.0;
+            }
+        }
     }
 }
 
@@ -50,7 +56,7 @@ int mwpm_python(int dx, int dy, int n_psi)
         exit(1);
     }
 
-    /* great_module.great_function */
+    /* call python function */
     pFunc = PyObject_GetAttrString(pModule, "main_fun");
 
     /* build args */

@@ -15,7 +15,7 @@ set ylabel "<Logical_Z>" font ",16"
 set xtics font ",10"
 set ytics font ",10"
 
-set xrange[0:1000]
+set xrange[0:200]
 set yrange[-1:1]
 
 

@@ -32,14 +32,14 @@ int main()
 
     srand((unsigned)time(NULL));
 
-    cx_dvec psi = initial_allplus(dx, dy);
+    cx_dvec psi = initial_allzero(dx, dy);
 
     for (int i = 1; i < 2 * dy; i = i + 2)
     {
         lgz = lgz | (1 << (i * dx + 1));
     }
 
-    for (int time = 1; time < 1000; time++)
+    for (int time = 1; time < 200; time++)
     {
 
         // cout << random_value << endl;
@@ -61,7 +61,7 @@ int main()
             measur1 = measure_pp(0, lgz, psi);
         }
 
-        for (int i = 1; i < dx; i++)
+        for (int i = 0; i < dx; i++)
         {
             lx = 1 << (1 * dx + i);
             if (distribution == 1)

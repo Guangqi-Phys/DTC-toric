@@ -27,7 +27,7 @@ int main()
     outfile.open("data_decoder.dat");
     srand((unsigned)time(NULL));
 
-    cx_dvec psi = initial_allzero(dx, dy);
+    cx_dvec psi = initial_allplus(dx, dy);
 
     Py_Initialize();
 
@@ -36,10 +36,10 @@ int main()
         lgz = lgz | (1 << (i * dx + 1));
     }
 
-    for (int time = 0; time < 100; time++)
+    for (int time = 0; time < 5; time++)
     {
 
-        // cout << random_value << endl;
+        // cout << random_value << end./dtc l;
 
         apply_stabl_uniform(dx, dy, psi);
 
@@ -54,7 +54,7 @@ int main()
             measur1 = measure_pp(0, lgz, psi);
         }
 
-        for (int i = 1; i < dx; i++)
+        for (int i = 0; i < dx; i++)
         {
             random_value = (rand() % 200 - 100) / 1000.0;
             theta1 = 0.47 * M_PI / 2 + random_value;
