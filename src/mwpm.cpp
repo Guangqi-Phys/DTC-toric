@@ -14,13 +14,15 @@ void mwpm_decoding(int dx, int dy, cx_dvec &psi)
 {
     int i, n_psi;
     int d = psi.size();
-    cout << d << endl;
+    int n_q = dx * dy * 2;
 
     for (i = 0; i < d; i++)
     {
-        if (psi[i] != 0.0)
+        if ((psi[i] != 0.0) && (__builtin_popcount(i) < 0.1 * n_q))
         {
             n_psi = mwpm_python(dx, dy, i);
+
+            // cout << i << " " << n_psi << endl;
             if (n_psi != i)
             {
                 psi[n_psi] = sqrt(psi[n_psi] * conj(psi[n_psi]) + psi[i] * conj(psi[i]));

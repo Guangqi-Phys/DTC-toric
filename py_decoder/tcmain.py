@@ -18,8 +18,8 @@ def main_fun(lx,ly,n_psi):
 	# 	f.write("%d"%int(int_qubits))
 	# f.close()
 
-s = main_fun(3,3,234)
-# print ((bin(24).replace('0b','')).zfill(18))
+s = main_fun(3,3,262119)
+print ((bin(24).replace('0b','')).zfill(18))
 print(s)
 print ((bin(s).replace('0b','')).zfill(18))
 # write crted_qubits

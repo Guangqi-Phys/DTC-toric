@@ -13,15 +13,15 @@ using namespace std;
 int main()
 {
 
-    int dx = 3;
-    int dy = 3;
+    int dx = 4;
+    int dy = 4;
     unsigned int lx;
     unsigned int lgz = 0;
     double random_value;
     double theta1_uni;
     double measur1, measur2;
 
-    int distribution = 1; // 1 for normal distribution error
+    int distribution = 0; // 1 for normal distribution error
                           // 0 for uniform distribution error
 
     ofstream outfile;
