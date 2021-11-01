@@ -21,4 +21,4 @@ set yrange[-1:1]
 
 set title "" font ""
 
-plot 'data_decoder.dat' using 1:2 pt 22  ,'data_decoder.dat' using 1:3 pt 22 
+plot 'data.dat' using 1:2 pt 22  ,'data.dat' using 1:3 pt 22 

@@ -10,16 +10,20 @@
 
 using namespace std;
 
-int main()
+int main(int argc, char *argv[])
 {
 
-    int dx = 4;
-    int dy = 4;
+    int dx = 3;
+    int dy = 3;
+    int const n_time = 500;
+    int const n_simu = 50;
     unsigned int lx;
     unsigned int lgz = 0;
     double random_value;
     double theta1_uni;
     double measur1, measur2;
+    double measur1list[n_time] = {0};
+    double measur2list[n_time] = {0};
 
     int distribution = 0; // 1 for normal distribution error
                           // 0 for uniform distribution error
@@ -32,61 +36,71 @@ int main()
 
     srand((unsigned)time(NULL));
 
-    cx_dvec psi = initial_allzero(dx, dy);
-
     for (int i = 1; i < 2 * dy; i = i + 2)
     {
         lgz = lgz | (1 << (i * dx + 1));
     }
 
-    for (int time = 1; time < 200; time++)
+    for (int simu = 0; simu < n_simu; simu++)
     {
+        cx_dvec psi = initial_allzero(dx, dy);
+        for (int time = 1; time < n_time; time++)
+        {
 
-        // cout << random_value << endl;
-        if (distribution == 1)
-        {
-            apply_stabl_normal(dx, dy, psi);
-        }
-        else
-        {
-            apply_stabl_uniform(dx, dy, psi);
-        }
-
-        if (time % 2 == 0)
-        {
-            measur1 = -measure_pp(0, lgz, psi);
-        }
-        else
-        {
-            measur1 = measure_pp(0, lgz, psi);
-        }
-
-        for (int i = 0; i < dx; i++)
-        {
-            lx = 1 << (1 * dx + i);
+            // cout << random_value << endl;
             if (distribution == 1)
             {
-                apply_ppr(lx, 0, theta1(gen), psi);
+                apply_stabl_normal(dx, dy, psi);
             }
             else
             {
-                random_value = (rand() % 200 - 100) / 1000.0;
-                theta1_uni = 0.47 * M_PI + random_value;
-                apply_ppr(lx, 0, theta1_uni, psi);
+                apply_stabl_uniform(dx, dy, psi);
             }
-        }
 
-        if (time % 2 == 0)
-        {
-            measur2 = -measure_pp(0, lgz, psi);
-        }
-        else
-        {
-            measur2 = measure_pp(0, lgz, psi);
-        }
+            if (time % 2 == 0)
+            {
+                measur1 = -measure_pp(0, lgz, psi);
+            }
+            else
+            {
+                measur1 = measure_pp(0, lgz, psi);
+            }
 
-        outfile << time << " " << measur1 << " " << measur2 << endl;
+            measur1list[time] = measur1list[time] + measur1 / n_simu;
+
+            for (int i = 0; i < dx; i++)
+            {
+                lx = 1 << (1 * dx + i);
+                if (distribution == 1)
+                {
+                    apply_ppr(lx, 0, theta1(gen), psi);
+                }
+                else
+                {
+                    random_value = (rand() % 200 - 100) / 1000.0;
+                    theta1_uni = 0.47 * M_PI + random_value;
+                    apply_ppr(lx, 0, theta1_uni, psi);
+                }
+            }
+
+            if (time % 2 == 0)
+            {
+                measur2 = -measure_pp(0, lgz, psi);
+            }
+            else
+            {
+                measur2 = measure_pp(0, lgz, psi);
+            }
+
+            measur2list[time] = measur2list[time] + measur2 / n_simu;
+        }
     }
+
+    for (int time = 1; time < n_time; time++)
+    {
+        outfile << time << " " << measur1list[time] << " " << measur2list[time] << endl;
+    }
+
     outfile.close();
     return 0;
 }
