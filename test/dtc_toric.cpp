@@ -15,8 +15,8 @@ int main(int argc, char *argv[])
 
     int dx = 3;
     int dy = 3;
-    int const n_time = 500;
-    int const n_simu = 50;
+    int const n_time = 10;
+    int const n_simu = 1;
     unsigned int lx;
     unsigned int lgz = 0;
     double random_value;
@@ -29,7 +29,7 @@ int main(int argc, char *argv[])
                           // 0 for uniform distribution error
 
     ofstream outfile;
-    outfile.open("data.dat");
+    outfile.open("data/data.dat");
 
     std::default_random_engine gen;
     std::normal_distribution<double> theta1(0.47 * M_PI, 0.02 * M_PI);

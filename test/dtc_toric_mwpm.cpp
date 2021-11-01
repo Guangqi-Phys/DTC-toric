@@ -25,7 +25,7 @@ int main()
     double measur1, measur2;
 
     ofstream outfile;
-    outfile.open("data_decoder.dat");
+    outfile.open("data/data_decoder.dat");
     srand((unsigned)time(NULL));
 
     cx_dvec psi = initial_allzero(dx, dy);
@@ -37,7 +37,7 @@ int main()
         lgz = lgz | (1 << (i * dx + 1));
     }
 
-    for (int time = 1; time < 200; time++)
+    for (int time = 1; time < 2; time++)
     {
 
         // cout << random_value << end./dtc l;

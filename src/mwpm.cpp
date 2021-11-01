@@ -45,7 +45,7 @@ int mwpm_python(int dx, int dy, int n_psi)
 
     sys = PyImport_ImportModule("sys");
     path = PyObject_GetAttrString(sys, "path");
-    PyList_Append(path, PyUnicode_FromString("."));
+    PyList_Append(path, PyUnicode_FromString("py_decoder/"));
 
     /* import */
     pName = PyUnicode_FromString("tcmain");
