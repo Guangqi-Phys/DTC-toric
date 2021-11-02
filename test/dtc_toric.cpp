@@ -50,7 +50,6 @@ int main(int argc, char *argv[])
         for (int time = 1; time < n_time; time++)
         {
 
-            // cout << random_value << endl;
             if (distribution == 1)
             {
                 apply_stabl_normal(dx, dy, psi);

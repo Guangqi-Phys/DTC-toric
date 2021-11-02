@@ -12,15 +12,15 @@
 
 using namespace std;
 
-int main()
+int main(int argc, char *argv[])
 {
 
     int dx = 3;
     int dy = 3;
     unsigned int lx;
     unsigned int lgz = 0;
-    int const n_simu = 1;
     int const n_time = 10;
+    int const n_simu = 1;
     string filename;
     double random_value;
     double theta0;
