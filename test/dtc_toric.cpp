@@ -21,6 +21,7 @@ int main(int argc, char *argv[])
     unsigned int lgz = 0;
     double random_value;
     double theta1_uni;
+    string filename;
     double measur1, measur2;
     double measur1list[n_time] = {0};
     double measur2list[n_time] = {0};
@@ -29,7 +30,9 @@ int main(int argc, char *argv[])
                           // 0 for uniform distribution error
 
     ofstream outfile;
-    outfile.open("data/data.dat");
+    filename = string("data/data-") + string("n_s=") + to_string(n_simu) + "-n_t=" + to_string(n_time) + string(".dat");
+
+    outfile.open(filename);
 
     std::default_random_engine gen;
     std::normal_distribution<double> theta1(0.47 * M_PI, 0.02 * M_PI);

@@ -19,13 +19,18 @@ int main()
     int dy = 3;
     unsigned int lx;
     unsigned int lgz = 0;
+    int n_simu = 50;
+    int n_time = 100;
+    string filename;
     double random_value;
     double theta0;
     double theta1;
     double measur1, measur2;
 
     ofstream outfile;
-    outfile.open("data/data_decoder.dat");
+    filename = string("data/data-decoder-") + string("n_s=") + to_string(n_simu) + "-n_t=" + to_string(n_time) + string(".dat");
+    outfile.open(filename);
+
     srand((unsigned)time(NULL));
 
     cx_dvec psi = initial_allzero(dx, dy);
