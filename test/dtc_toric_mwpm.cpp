@@ -19,16 +19,18 @@ int main()
     int dy = 3;
     unsigned int lx;
     unsigned int lgz = 0;
-    int n_simu = 50;
-    int n_time = 100;
+    int const n_simu = 1;
+    int const n_time = 10;
     string filename;
     double random_value;
     double theta0;
     double theta1;
     double measur1, measur2;
+    double measur1list[n_time] = {0};
+    double measur2list[n_time] = {0};
 
     ofstream outfile;
-    filename = string("data/data-decoder-") + string("n_s=") + to_string(n_simu) + "-n_t=" + to_string(n_time) + string(".dat");
+    filename = string("data/data_decoder_") + string("ns=") + to_string(n_simu) + "_nt=" + to_string(n_time) + string(".dat");
     outfile.open(filename);
 
     srand((unsigned)time(NULL));
@@ -37,53 +39,65 @@ int main()
 
     Py_Initialize();
 
+    // define logical z
     for (int i = 1; i < 2 * dy; i = i + 2)
     {
         lgz = lgz | (1 << (i * dx + 1));
     }
 
-    for (int time = 1; time < 2; time++)
+    for (int simu = 0; simu < n_simu; simu++)
     {
-
-        // cout << random_value << end./dtc l;
-
-        apply_stabl_uniform(dx, dy, psi);
-
-        // cout << psi[0] << endl;
-
-        mwpm_decoding(dx, dy, psi);
-
-        // cout << psi[0] << endl;
-
-        if (time % 2 == 0)
+        cx_dvec psi = initial_allzero(dx, dy);
+        for (int time = 1; time < n_time; time++)
         {
-            measur1 = -measure_pp(0, lgz, psi);
-        }
-        else
-        {
-            measur1 = measure_pp(0, lgz, psi);
-        }
 
-        for (int i = 0; i < dx; i++)
-        {
-            random_value = (rand() % 200 - 100) / 1000.0;
-            theta1 = 0.47 * M_PI + random_value;
-            lx = 1 << (1 * dx + i);
-            apply_ppr(lx, 0, theta1, psi);
-        }
+            // apply stablizer
+            apply_stabl_uniform(dx, dy, psi);
 
-        mwpm_decoding(dx, dy, psi);
+            // do mwpm decoder for psi
+            mwpm_decoding(dx, dy, psi);
 
-        if (time % 2 == 0)
-        {
-            measur2 = -measure_pp(0, lgz, psi);
-        }
-        else
-        {
-            measur2 = measure_pp(0, lgz, psi);
-        }
+            // measure logical z operator
+            if (time % 2 == 0)
+            {
+                measur1 = -measure_pp(0, lgz, psi);
+            }
+            else
+            {
+                measur1 = measure_pp(0, lgz, psi);
+            }
 
-        outfile << time << " " << measur1 << " " << measur2 << endl;
+            measur1list[time] = measur1list[time] + measur1 / n_simu;
+
+            // apply logical x operator
+            for (int i = 0; i < dx; i++)
+            {
+                random_value = (rand() % 200 - 100) / 1000.0;
+                theta1 = 0.47 * M_PI + random_value;
+                lx = 1 << (1 * dx + i);
+                apply_ppr(lx, 0, theta1, psi);
+            }
+
+            // do mwpm decoder
+            mwpm_decoding(dx, dy, psi);
+
+            // measure logical z operator
+            if (time % 2 == 0)
+            {
+                measur2 = -measure_pp(0, lgz, psi);
+            }
+            else
+            {
+                measur2 = measure_pp(0, lgz, psi);
+            }
+
+            measur2list[time] = measur2list[time] + measur2 / n_simu;
+        }
+    }
+
+    for (int time = 1; time < n_time; time++)
+    {
+        outfile << time << " " << measur1list[time] << " " << measur2list[time] << endl;
     }
 
     Py_Finalize();

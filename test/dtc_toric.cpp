@@ -30,7 +30,7 @@ int main(int argc, char *argv[])
                           // 0 for uniform distribution error
 
     ofstream outfile;
-    filename = string("data/data-") + string("n_s=") + to_string(n_simu) + "-n_t=" + to_string(n_time) + string(".dat");
+    filename = string("data/data_") + string("ns=") + to_string(n_simu) + "_nt=" + to_string(n_time) + string(".dat");
 
     outfile.open(filename);
 
