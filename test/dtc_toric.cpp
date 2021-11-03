@@ -15,8 +15,8 @@ int main(int argc, char *argv[])
 
     int dx = 3;
     int dy = 3;
-    int const n_time = 10;
-    int const n_simu = 1;
+    int const n_time = 1000;
+    int const n_simu = 200;
     unsigned int lx;
     unsigned int lgz = 0;
     double random_value;

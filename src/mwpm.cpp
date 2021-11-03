@@ -10,7 +10,7 @@
 #include <string>
 using namespace std;
 
-void mwpm_decoding(int dx, int dy, cx_dvec &psi)
+void mwpm_decoding(int dx, int dy, double threshold, cx_dvec &psi)
 {
     int i, n_psi;
     int d = psi.size();
@@ -18,7 +18,7 @@ void mwpm_decoding(int dx, int dy, cx_dvec &psi)
 
     for (i = 0; i < d; i++)
     {
-        if ((psi[i] != 0.0) && (__builtin_popcount(i) < 0.1 * n_q))
+        if ((psi[i] != 0.0) && (__builtin_popcount(i) < threshold * n_q))
         {
             n_psi = mwpm_python(dx, dy, i);
 

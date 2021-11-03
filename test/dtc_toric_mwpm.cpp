@@ -17,10 +17,11 @@ int main(int argc, char *argv[])
 
     int dx = 3;
     int dy = 3;
+    double threshold = 0.1;
     unsigned int lx;
     unsigned int lgz = 0;
-    int const n_time = 10;
-    int const n_simu = 1;
+    int const n_time = 1000;
+    int const n_simu = 50;
     string filename;
     double random_value;
     double theta0;
@@ -30,7 +31,7 @@ int main(int argc, char *argv[])
     double measur2list[n_time] = {0};
 
     ofstream outfile;
-    filename = string("data/data_decoder_") + string("ns=") + to_string(n_simu) + "_nt=" + to_string(n_time) + string(".dat");
+    filename = string("data/data_decoder_") + string("thd=") + to_string(threshold) + string("_ns=") + to_string(n_simu) + "_nt=" + to_string(n_time) + string(".dat");
     outfile.open(filename);
 
     srand((unsigned)time(NULL));
@@ -55,7 +56,7 @@ int main(int argc, char *argv[])
             apply_stabl_uniform(dx, dy, psi);
 
             // do mwpm decoder for psi
-            mwpm_decoding(dx, dy, psi);
+            mwpm_decoding(dx, dy, threshold, psi);
 
             // measure logical z operator
             if (time % 2 == 0)
@@ -79,7 +80,7 @@ int main(int argc, char *argv[])
             }
 
             // do mwpm decoder
-            mwpm_decoding(dx, dy, psi);
+            mwpm_decoding(dx, dy, threshold, psi);
 
             // measure logical z operator
             if (time % 2 == 0)

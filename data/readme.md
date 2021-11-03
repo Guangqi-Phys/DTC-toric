@@ -1,5 +1,6 @@
 ```
-ns: simulation times
-nt: step number in each simulation
+ns: simulation times.
+nt: step number in each simulation.
+thd: threshold.
 ```
 

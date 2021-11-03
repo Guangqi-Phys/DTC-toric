@@ -1,7 +1,7 @@
 #ifndef MATCH_HPP_
 #define MATCH_HPP_
 
-void mwpm_decoding(int dx, int dy, cx_dvec &psi);
+void mwpm_decoding(int dx, int dy, double threshold, cx_dvec &psi);
 int mwpm_python(int dx, int dy, int n_psi);
 
 // int infty();
