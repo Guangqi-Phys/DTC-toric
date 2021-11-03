@@ -21,4 +21,4 @@ set yrange[-1:1]
 
 set title "" font ""
 
-plot 'data_decoder_thd=0.130000_ns=50_nt=1000.dat' using 1:2 with lines, 'data_decoder_thd=0.130000_ns=50_nt=1000.dat' using 1:3 with lines, 'data_decoder_thd=0.100000_ns=50_nt=1000.dat' using 1:2 with lines, 'data_decoder_thd=0.100000_ns=50_nt=1000.dat' using 1:3 with lines
+plot 'data_decoder_thd=0.010000_ns=50_nt=1000.dat' using 1:2 with lines, 'data_decoder_thd=0.010000_ns=50_nt=1000.dat' using 1:3 with lines, 'data_decoder_thd=0.100000_ns=50_nt=1000.dat' using 1:2 with lines, 'data_decoder_thd=0.100000_ns=50_nt=1000.dat' using 1:3 with lines
