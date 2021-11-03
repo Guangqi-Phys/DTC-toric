@@ -1,6 +1,7 @@
 #include "../include/toric.hpp"
 #include "../include/stabilizer.hpp"
 #include <iostream>
+#include <bitset>
 #include <vector>
 
 using namespace std;

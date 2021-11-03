@@ -17,7 +17,7 @@ int main(int argc, char *argv[])
 
     int dx = 3;
     int dy = 3;
-    double threshold = 0.1;
+    double threshold = 0.01;
     unsigned int lx;
     unsigned int lgz = 0;
     int const n_time = 1000;

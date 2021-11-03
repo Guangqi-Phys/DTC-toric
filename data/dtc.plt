@@ -3,7 +3,7 @@ set size ratio 0.8
 aqua = "#00FFFF"; azure = "#F0FFFF"
 aliceblue = "#F0F8FF"
 
-unset key
+set key
 
 set style fill solid 1.00 border 0
 
@@ -21,4 +21,4 @@ set yrange[-1:1]
 
 set title "" font ""
 
-plot 'data_ns=200_nt=1000.dat' using 1:2 with lines pt 22, 'data_ns=200_nt=1000.dat' using 1:3 with lines pt 22 
+plot 'data_decoder_thd=0.130000_ns=50_nt=1000.dat' using 1:2 with lines, 'data_decoder_thd=0.130000_ns=50_nt=1000.dat' using 1:3 with lines, 'data_decoder_thd=0.100000_ns=50_nt=1000.dat' using 1:2 with lines, 'data_decoder_thd=0.100000_ns=50_nt=1000.dat' using 1:3 with lines

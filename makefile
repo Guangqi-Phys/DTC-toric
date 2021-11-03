@@ -3,7 +3,7 @@ RM=rm -f
 CPPFLAGS=-std=c++11 -O2
 
 tests: test_toric test_floquet dtc_toric dtc_toric_mwpm
-	RM *.o
+	$(RM) *.o
 
 test_toric: toric.o stabilizer.o ./test/test_toric.cpp
 	$(CXX) -o test_toric toric.o stabilizer.o ./test/test_toric.cpp $(CPPFLAGS)

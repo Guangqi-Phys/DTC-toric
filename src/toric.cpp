@@ -2,6 +2,7 @@
 #include "../include/stabilizer.hpp"
 #include <stdlib.h>
 #include <vector>
+#include <bitset>
 #include <iostream>
 
 using namespace std;
@@ -17,7 +18,7 @@ d=3:
 0 1 2
 3 4 5
 6 7 8
- 
+
 etc.
 x-direction:͢͢͢ Left to right
 y-direction: Up to down
