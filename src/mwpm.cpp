@@ -12,8 +12,8 @@ using namespace std;
 
 void mwpm_decoding(int dx, int dy, double threshold, cx_dvec &psi)
 {
-    int i, n_psi;
-    int d = psi.size();
+    long int i, n_psi;
+    long int d = psi.size();
     int n_q = dx * dy * 2;
 
     for (i = 0; i < d; i++)

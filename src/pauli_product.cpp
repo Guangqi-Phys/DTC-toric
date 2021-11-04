@@ -65,7 +65,7 @@ void apply_pauli_fast(int k, bool x, bool z, cx_dvec &psi)
 // Apply exp(iPθ) to psi, where P = i^{x·z}(⨂_k X_k^(x_k)) (⨂_k Z_k^(z_k))
 void apply_ppr(unsigned int x, unsigned int z, double theta, cx_dvec &psi)
 {
-	int d;
+	long int d;
 	d = psi.size();
 	cx_double c, s;
 	c = cos(theta);
@@ -136,9 +136,9 @@ void apply_ppr(unsigned int x, unsigned int z, double theta, cx_dvec &psi)
 // Measure Pauli Product operator (fast)
 double measure_pp(unsigned int x, unsigned int z, cx_dvec &psi)
 {
-	int d;
+	long int d;
 	d = psi.size();
-	unsigned int bits, n_temp = (d < 0) ? -d : d;
+	unsigned long int bits, n_temp = (d < 0) ? -d : d;
 	for (bits = 0; n_temp != 0; ++bits)
 		n_temp >>= 1;
 	unsigned int n_q = bits - 1;
