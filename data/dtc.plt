@@ -24,12 +24,21 @@ set xrange[0:1000]
 set yrange[-1:1]
 
 
-set title "200 samples" font ",24"
 
-plot 'data_ns=200_nt=1000.dat' using 1:2 with lines ls 1 lw 2 t "Without decoder",\
-'data_ns=200_nt=1000.dat' using 1:3 with lines ls 1 lw 2 t "",\
-'data_decoder_thd=0.100000_ns=200_nt=1000.dat' using 1:2 with lines lc 2 lw 2 t "With decoder",\
-'data_decoder_thd=0.100000_ns=200_nt=1000.dat' using 1:3 with lines lc 2 lw 2 t "",\
+set title "1 sample" font ",24"
+
+plot 'data_ns=1_nt=1000.dat' using 1:2 with lines lc 1 lw 2 t "Without decoder",\
+'data_ns=1_nt=1000.dat' using 1:3 with lines lc 2 lw 2 t "Without decoder",\
+'data_decoder_thd=0.100000_ns=1_nt=1000.dat' using 1:2 with lines lc 3 lw 2 t "With decoder",\
+'data_decoder_thd=0.100000_ns=1_nt=1000.dat' using 1:3 with lines lc 4 lw 2 t "With decoder",\
+
+
+# set title "200 samples" font ",24"
+#
+# plot 'data_ns=200_nt=1000.dat' using 1:2 with lines ls 1 lw 2 t "Without decoder",\
+# 'data_ns=200_nt=1000.dat' using 1:3 with lines ls 1 lw 2 t "",\
+# 'data_decoder_thd=0.100000_ns=200_nt=1000.dat' using 1:2 with lines lc 2 lw 2 t "With decoder",\
+# 'data_decoder_thd=0.100000_ns=200_nt=1000.dat' using 1:3 with lines lc 2 lw 2 t "",\
 
 
 
