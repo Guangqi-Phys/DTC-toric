@@ -35,10 +35,9 @@ set yrange[-1:1]
 
 set title "200 samples" font ",24"
 
-plot 'data_ns=200_nt=1000.dat' using 1:2 with lines ls 1 lw 2 t "Without decoder",\
-'data_ns=200_nt=1000.dat' using 1:3 with lines ls 1 lw 2 t "",\
-'data_decoder_thd=0.100000_ns=200_nt=1000.dat' using 1:2 with lines lc 2 lw 2 t "With decoder",\
-'data_decoder_thd=0.100000_ns=200_nt=1000.dat' using 1:3 with lines lc 2 lw 2 t "",\
+plot 'data_decoder__ns=1_nt=200.dat' using 1:2 with lines ls 1 lw 2 t "",\
+'data_decoder__ns=1_nt=200.dat' using 1:3 with lines ls 1 lw 2 t ""
+
 
 
 

@@ -10,10 +10,41 @@
 #include <string>
 using namespace std;
 
+int valueAtbit(int num, int bit)
+{
+    return (num >> (bit - 1)) & 1;
+}
+
+void get_correction(int dx, int dy, cx_dvec &psi, cx_dvec &corr)
+{
+    int i, n_psi, count, bit;
+    int d = psi.size();
+    int n_q = dx * dy * 2;
+
+    for (i = 0; i < d; i++)
+    {
+        count = 0;
+        n_psi = mwpm_python(dx, dy, i);
+        for (int j = 1; j < 2 * dy; j = j + 2)
+        {
+            bit = n_q - (j * dx + 1);
+            count = count + valueAtbit(i, bit) + valueAtbit(n_psi, bit);
+        }
+        if (count % 2 == 0)
+        {
+            corr[i] = 1;
+        }
+        else
+        {
+            corr[i] = -1;
+        }
+    }
+}
+
 void mwpm_decoding(int dx, int dy, double threshold, cx_dvec &psi)
 {
-    long int i, n_psi;
-    long int d = psi.size();
+    int i, n_psi;
+    int d = psi.size();
     int n_q = dx * dy * 2;
 
     for (i = 0; i < d; i++)

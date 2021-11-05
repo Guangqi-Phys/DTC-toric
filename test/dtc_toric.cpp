@@ -17,8 +17,8 @@ int main(int argc, char *argv[])
     int dy = 3;
     int const n_time = 1000;
     int const n_simu = 200;
-    unsigned long int lx;
-    unsigned long int lgz = 0;
+    unsigned int lx;
+    unsigned int lgz = 0;
     double random_value;
     double theta1_uni;
     string filename;

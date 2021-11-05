@@ -136,9 +136,9 @@ void apply_ppr(unsigned int x, unsigned int z, double theta, cx_dvec &psi)
 // Measure Pauli Product operator (fast)
 double measure_pp(unsigned int x, unsigned int z, cx_dvec &psi)
 {
-	long int d;
+	int d;
 	d = psi.size();
-	unsigned long int bits, n_temp = (d < 0) ? -d : d;
+	unsigned int bits, n_temp = (d < 0) ? -d : d;
 	for (bits = 0; n_temp != 0; ++bits)
 		n_temp >>= 1;
 	unsigned int n_q = bits - 1;
@@ -165,6 +165,41 @@ double measure_pp(unsigned int x, unsigned int z, cx_dvec &psi)
 			break;
 		}
 		mysum += psi[y] * conj(psi[y ^ x]) * phase;
+	}
+	return real(mysum);
+}
+
+double measure_pp_corr(unsigned int x, unsigned int z, cx_dvec &psi, cx_dvec &corr)
+{
+	int d;
+	d = psi.size();
+	unsigned int bits, n_temp = (d < 0) ? -d : d;
+	for (bits = 0; n_temp != 0; ++bits)
+		n_temp >>= 1;
+	unsigned int n_q = bits - 1;
+
+	cx_double mysum = 0.0;
+	for (int y = 0; y < d; y++)
+	{
+		unsigned int xz = __builtin_popcount(x & z);
+		unsigned int yz = __builtin_popcount(y & z);
+		cx_double phase;
+		switch ((xz + 2 * yz) % 4)
+		{
+		case 0:
+			phase = cx_double(1.0, 0.0);
+			break;
+		case 1:
+			phase = cx_double(0.0, 1.0);
+			break;
+		case 2:
+			phase = cx_double(-1.0, 0.0);
+			break;
+		case 3:
+			phase = cx_double(0.0, -1.0);
+			break;
+		}
+		mysum += psi[y] * conj(psi[y ^ x]) * phase * corr[y];
 	}
 	return real(mysum);
 }
