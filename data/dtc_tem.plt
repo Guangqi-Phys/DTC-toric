@@ -20,7 +20,7 @@ set ylabel "<Logical_{Z}>" font ",18"
 set xtics font ",10"
 set ytics font ",10"
 
-set xrange[0:200]
+set xrange[0:1000]
 set yrange[-1:1]
 
 
@@ -33,10 +33,12 @@ set yrange[-1:1]
 # 'data_decoder_thd=0.100000_ns=1_nt=1000.dat' using 1:3 with lines lc 4 lw 2 t "With decoder",\
 
 
-set title "200 samples" font ",24"
+set title "500 samples" font ",24"
 
-plot 'data_decoder__ns=1_nt=200.dat' using 1:2 with lines ls 1 lw 2 t "",\
-'data_decoder__ns=1_nt=200.dat' using 1:3 with lines ls 1 lw 2 t ""
+plot 'data_decoder_ns=500_nt=1000.dat' using 1:2 with lines lc 1 lw 2 t "with decoder",\
+'data_decoder_ns=500_nt=1000.dat' using 1:3 with lines lc 1 lw 2 t "",\
+'data_ns=500_nt=1000.dat' using 1:2 with lines lc 3 lw 2 t "without decoder",\
+'data_ns=500_nt=1000.dat' using 1:3 with lines lc 3 lw 2 t ""
 
 
 

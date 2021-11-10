@@ -15,12 +15,14 @@ int main(int argc, char *argv[])
 
     int dx = 3;
     int dy = 3;
-    int const n_time = 1000;
+    int const n_time = 500;
     int const n_simu = 200;
     unsigned int lx;
     unsigned int lgz = 0;
     double random_value;
     double theta1_uni;
+    double perturbation;
+    double perturb_o;
     string filename;
     double measur1, measur2;
     double measur1list[n_time] = {0};
@@ -29,8 +31,11 @@ int main(int argc, char *argv[])
     int distribution = 0; // 1 for normal distribution error
                           // 0 for uniform distribution error
 
+    perturbation = 0;
+    perturb_o = perturbation * 0.1;
+
     ofstream outfile;
-    filename = string("data/data_") + string("ns=") + to_string(n_simu) + "_nt=" + to_string(n_time) + string(".dat");
+    filename = string("data/nodecoder_") + string("perturb") + to_string(perturb_o) + string("_ns=") + to_string(n_simu) + "_nt=" + to_string(n_time) + string(".dat");
 
     outfile.open(filename);
 
@@ -80,7 +85,7 @@ int main(int argc, char *argv[])
                 else
                 {
                     random_value = (rand() % 200 - 100) / 1000.0;
-                    theta1_uni = 0.47 * M_PI + random_value;
+                    theta1_uni = 0.5 * M_PI + random_value * perturbation;
                     apply_ppr(lx, 0, theta1_uni, psi);
                 }
             }

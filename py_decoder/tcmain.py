@@ -5,9 +5,9 @@ from tcfunctionsx import *
 
 
 
-def main_fun(lx,ly,i):
+def main_fun(lx,ly,npsi):
 	# data_file = 'crtedq.dat'
-	er_qubits, m_stablz = initial_states(lx,ly,i)
+	er_qubits, m_stablz = initial_states(lx,ly,npsi)
 	er_stablz = torus_error(m_stablz, er_qubits)
 	matching = mwpm_toric(er_stablz)
 	crted_qubits = correct_qubits(matching,er_qubits)
@@ -17,9 +17,9 @@ def main_fun(lx,ly,i):
 	# 	f.write("%d"%int(int_qubits))
 	# f.close()
 
-# s = main_fun(3,3,89)
-# print (bin(24).replace('0b',''))
-# print (bin(s).replace('0b',''))
+# s = main_fun(3,3,1152)
+# print (s)
+# print ((bin(s).replace('0b','')).zfill(18))
 # write crted_qubits
 
 

@@ -24,6 +24,8 @@ int main(int argc, char *argv[])
     int const n_simu = 200;
     string filename;
     double random_value;
+    double perturbation;
+    double perturb_o;
     double theta0;
     double theta1;
     double measur1, measur2;
@@ -31,7 +33,7 @@ int main(int argc, char *argv[])
     double measur2list[n_time] = {0};
 
     ofstream outfile;
-    filename = string("data/data_decoder") + string("_ns=") + to_string(n_simu) + "_nt=" + to_string(n_time) + string(".dat");
+    filename = string("data/decoder_") + string("perturb") + to_string(perturb_o) + string("_ns=") + to_string(n_simu) + "_nt=" + to_string(n_time) + string(".dat");
     outfile.open(filename);
 
     srand((unsigned)time(NULL));
@@ -78,7 +80,7 @@ int main(int argc, char *argv[])
             for (int i = 0; i < dx; i++)
             {
                 random_value = (rand() % 200 - 100) / 1000.0;
-                theta1 = 0.47 * M_PI + random_value;
+                theta1 = 0.5 * M_PI + random_value * perturbation;
                 lx = 1 << (1 * dx + i);
                 apply_ppr(lx, 0, theta1, psi);
             }
