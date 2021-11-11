@@ -12,14 +12,15 @@ using namespace std;
 
 int valueAtbit(int num, int bit)
 {
-    return (num >> (bit - 1)) & 1;
+    return (num >> bit) & 1;
 }
 
 void get_correction(int dx, int dy, cx_dvec &psi, cx_dvec &corr)
 {
-    int i, n_psi, count, bit;
+    int i, n_psi, count, bit, n_q;
     int d = psi.size();
-    int n_q = dx * dy * 2;
+
+    n_q = dx * dy * 2;
 
     for (i = 0; i < d; i++)
     {
@@ -27,8 +28,8 @@ void get_correction(int dx, int dy, cx_dvec &psi, cx_dvec &corr)
         n_psi = mwpm_python(dx, dy, i);
         for (int j = 1; j < 2 * dy; j = j + 2)
         {
-            bit = n_q - (j * dx + 1);
-            count = count + valueAtbit(i, bit) + valueAtbit(n_psi, bit);
+            bit = j * dx + 1;
+            count += valueAtbit(i, bit) + valueAtbit(n_psi, bit);
         }
         if (count % 2 == 0)
         {
@@ -63,7 +64,7 @@ void mwpm_decoding(int dx, int dy, double threshold, cx_dvec &psi)
     }
 }
 
-int mwpm_python(int dx, int dy, int n_psi)
+int mwpm_python(int dx, int dy, int i_psi)
 {
     int res;
     PyObject *pName, *pModule, *pFunc;
@@ -96,7 +97,7 @@ int mwpm_python(int dx, int dy, int n_psi)
     pArgs = PyTuple_New(3);
     PyTuple_SetItem(pArgs, 0, PyLong_FromLong(dx));
     PyTuple_SetItem(pArgs, 1, PyLong_FromLong(dy));
-    PyTuple_SetItem(pArgs, 2, PyLong_FromLong(n_psi));
+    PyTuple_SetItem(pArgs, 2, PyLong_FromLong(i_psi));
 
     /* call */
     pValue = PyObject_CallObject(pFunc, pArgs);

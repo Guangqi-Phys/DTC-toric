@@ -31,11 +31,11 @@ int main(int argc, char *argv[])
     int distribution = 0; // 1 for normal distribution error
                           // 0 for uniform distribution error
 
-    perturbation = 0;
+    perturbation = 0.5;
     perturb_o = perturbation * 0.1;
 
     ofstream outfile;
-    filename = string("data/nodecoder_") + string("perturb") + to_string(perturb_o) + string("_ns=") + to_string(n_simu) + "_nt=" + to_string(n_time) + string(".dat");
+    filename = string("data/nodecoder_") + string("ptb=") + to_string(perturb_o) + string("_ns=") + to_string(n_simu) + "_nt=" + to_string(n_time) + string(".dat");
 
     outfile.open(filename);
 
