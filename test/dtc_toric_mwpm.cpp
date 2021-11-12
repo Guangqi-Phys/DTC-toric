@@ -22,6 +22,7 @@ int main(int argc, char *argv[])
     unsigned int lgz = 0;
     int const n_time = 1000;
     int const n_simu = 100;
+    int nq = dx * dy * 2;
     string filename;
     double random_value;
     double perturbation;
