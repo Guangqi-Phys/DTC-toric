@@ -33,39 +33,39 @@ set yrange[-1.1:1.1]
 # 'data_decoder_thd=0.100000_ns=1_nt=1000.dat' using 1:3 with lines lc 4 lw 2 t "With decoder",\
 
 
-set title "no decoder, 200 samples" font ",24"
+set title "ptb = 0.05, 200 samples" font ",24"
 
-plot 'decoder_perturb=0.000000_ns=200_nt=500.dat' using 1:2 with lines ls 1 lw 2 t "0.00",\
-'decoder_perturb=0.000000_ns=200_nt=500.dat' using 1:3 with lines ls 1 lw 2 t "",\
-'decoder_perturb=0.020000_ns=200_nt=500.dat' using 1:2 with lines ls 2 lw 2 t "0.02",\
-'decoder_perturb=0.020000_ns=200_nt=500.dat' using 1:3 with lines ls 2 lw 2 t "",\
-'decoder_perturb=0.030000_ns=200_nt=500.dat' using 1:2 with lines ls 3 lw 2 t "0.03",\
-'decoder_perturb=0.030000_ns=200_nt=500.dat' using 1:3 with lines ls 3 lw 2 t "",\
-'decoder_perturb=0.040000_ns=200_nt=500.dat' using 1:2 with lines ls 4 lw 2 t "0.04",\
-'decoder_perturb=0.040000_ns=200_nt=500.dat' using 1:3 with lines ls 4 lw 2 t "",\
-'data_decoder_ns=200_nt=500.dat' using 1:2 with lines lc 7 lw 2 t "0.1",\
-'data_decoder_ns=200_nt=500.dat' using 1:3 with lines lc 7 lw 2 t "",\
-'decoder_perturb=0.200000_ns=200_nt=500.dat' using 1:2 with lines ls 5 lw 2 t "0.2",\
-'decoder_perturb=0.200000_ns=200_nt=500.dat' using 1:3 with lines ls 5 lw 2 t "",\
-'decoder_perturb=0.300000_ns=200_nt=500.dat' using 1:2 with lines ls 8 lw 2 t "0.3",\
-'decoder_perturb=0.300000_ns=200_nt=500.dat' using 1:3 with lines ls 8 lw 2 t ""
+plot 'decoder_ptb=0.050000_ns=200_nt=500.dat' using 1:2 with lines ls 1 lw 2 t "decoder",\
+'decoder_ptb=0.050000_ns=200_nt=500.dat' using 1:3 with lines ls 1 lw 2 t "",\
+'nodecoder_ptb=0.050000_ns=200_nt=500.dat' using 1:2 with lines ls 2 lw 2 t "nodecoder",\
+'nodecoder_ptb=0.050000_ns=200_nt=500.dat' using 1:3 with lines ls 2 lw 2 t ""
 
-# plot 'nodecoder_perturb=0.000000_ns=200_nt=500.dat' using 1:2 with lines ls 1 lw 2 t "0.00",\
-# 'nodecoder_perturb=0.000000_ns=200_nt=500.dat' using 1:3 with lines ls 1 lw 2 t "",\
-# 'nodecoder_perturb=0.010000_ns=200_nt=500.dat' using 1:2 with lines ls 2 lw 2 t "0.01",\
-# 'nodecoder_perturb=0.010000_ns=200_nt=500.dat' using 1:3 with lines ls 2 lw 2 t "",\
-# 'nodecoder_perturb=0.020000_ns=200_nt=500.dat' using 1:2 with lines ls 6 lw 2 t "0.02",\
-# 'nodecoder_perturb=0.020000_ns=200_nt=500.dat' using 1:3 with lines ls 6 lw 2 t "",\
-# 'nodecoder_perturb=0.030000_ns=200_nt=500.dat' using 1:2 with lines ls 3 lw 2 t "0.03",\
-# 'nodecoder_perturb=0.030000_ns=200_nt=500.dat' using 1:3 with lines ls 3 lw 2 t "",\
-# 'nodecoder_perturb=0.040000_ns=200_nt=500.dat' using 1:2 with lines ls 4 lw 2 t "0.04",\
-# 'nodecoder_perturb=0.040000_ns=200_nt=500.dat' using 1:3 with lines ls 4 lw 2 t "",\
-# 'data_ns=200_nt=1000.dat' using 1:2 with lines lc 7 lw 2 t "0.1",\
-# 'data_ns=200_nt=1000.dat' using 1:3 with lines lc 7 lw 2 t "",\
-# 'nodecoder_perturb=0.200000_ns=200_nt=500.dat' using 1:2 with lines ls 5 lw 2 t "0.2",\
-# 'nodecoder_perturb=0.200000_ns=200_nt=500.dat' using 1:3 with lines ls 5 lw 2 t "",\
-# 'nodecoder_perturb=0.300000_ns=200_nt=500.dat' using 1:2 with lines ls 8 lw 2 t "0.3",\
-# 'nodecoder_perturb=0.300000_ns=200_nt=500.dat' using 1:3 with lines ls 8 lw 2 t ""
+#
+# plot 'decoder_ptb=0.000000_ns=200_nt=500.dat' using 1:2 with lines ls 1 lw 2 t "ptb = 0.00",\
+# 'decoder_ptb=0.000000_ns=200_nt=500.dat' using 1:3 with lines ls 1 lw 2 t "",\
+# 'decoder_ptb=0.010000_ns=200_nt=500.dat' using 1:2 with lines ls 2 lw 2 t "0.01",\
+# 'decoder_ptb=0.010000_ns=200_nt=500.dat' using 1:3 with lines ls 2 lw 2 t "",\
+# 'decoder_ptb=0.050000_ns=200_nt=500.dat' using 1:2 with lines ls 3 lw 2 t "0.05",\
+# 'decoder_ptb=0.050000_ns=200_nt=500.dat' using 1:3 with lines ls 3 lw 2 t "",\
+# 'decoder_ptb=0.050000_ns=200_nt=500.dat' using 1:2 with lines ls 4 lw 2 t "0.05",\
+# 'decoder_ptb=0.050000_ns=200_nt=500.dat' using 1:3 with lines ls 4 lw 2 t "",\
+# 'decoder_ptb=0.050000_ns=200_nt=500.dat' using 1:2 with lines ls 5 lw 2 t "0.05",\
+# 'decoder_ptb=0.050000_ns=200_nt=500.dat' using 1:3 with lines ls 5 lw 2 t "",\
+# 'decoder_ptb=0.050000_ns=200_nt=500.dat' using 1:2 with lines ls 6 lw 2 t "0.05",\
+# 'decoder_ptb=0.050000_ns=200_nt=500.dat' using 1:3 with lines ls 6 lw 2 t ""
+
+# plot 'nodecoder_ptb=0.000000_ns=200_nt=500.dat' using 1:2 with lines ls 1 lw 2 t "ptb = 0.00",\
+# 'nodecoder_ptb=0.000000_ns=200_nt=500.dat' using 1:3 with lines ls 1 lw 2 t "",\
+# 'nodecoder_ptb=0.010000_ns=200_nt=500.dat' using 1:2 with lines ls 2 lw 2 t "0.01",\
+# 'nodecoder_ptb=0.010000_ns=200_nt=500.dat' using 1:3 with lines ls 2 lw 2 t "",\
+# 'nodecoder_ptb=0.050000_ns=200_nt=500.dat' using 1:2 with lines ls 3 lw 2 t "0.05",\
+# 'nodecoder_ptb=0.050000_ns=200_nt=500.dat' using 1:3 with lines ls 3 lw 2 t "",\
+# 'nodecoder_ptb=0.050000_ns=200_nt=500.dat' using 1:2 with lines ls 4 lw 2 t "0.05",\
+# 'nodecoder_ptb=0.050000_ns=200_nt=500.dat' using 1:3 with lines ls 4 lw 2 t "",\
+# 'nodecoder_ptb=0.050000_ns=200_nt=500.dat' using 1:2 with lines ls 5 lw 2 t "0.05",\
+# 'nodecoder_ptb=0.050000_ns=200_nt=500.dat' using 1:3 with lines ls 5 lw 2 t "",\
+# 'nodecoder_ptb=0.050000_ns=200_nt=500.dat' using 1:2 with lines ls 6 lw 2 t "0.05",\
+# 'nodecoder_ptb=0.050000_ns=200_nt=500.dat' using 1:3 with lines ls 6 lw 2 t ""
 
 
 # plot 'data_ns=200_nt=1000.dat' using 1:2 with lines ls 1 lw 2 t "Without decoder",\

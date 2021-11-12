@@ -15,12 +15,14 @@ int main(int argc, char *argv[])
 
     int dx = 3;
     int dy = 3;
-    int const n_time = 500;
-    int const n_simu = 200;
+    int const n_time = 1000;
+    int const n_simu = 100;
+    int nq = dx * dy * 2;
     unsigned int lx;
     unsigned int lgz = 0;
     double random_value;
     double theta1_uni;
+    double theta2;
     double perturbation;
     double perturb_o;
     string filename;
@@ -31,7 +33,7 @@ int main(int argc, char *argv[])
     int distribution = 0; // 1 for normal distribution error
                           // 0 for uniform distribution error
 
-    perturbation = 0.5;
+    perturbation = 1;
     perturb_o = perturbation * 0.1;
 
     ofstream outfile;
@@ -62,6 +64,15 @@ int main(int argc, char *argv[])
             else
             {
                 apply_stabl_uniform(dx, dy, psi);
+            }
+
+            // add errors
+            for (int i = 0; i < nq; i++)
+            {
+                lx = 1 << i;
+                random_value = (rand() % 200 - 100) / 1000.0;
+                theta2 = 0.07 * M_PI + random_value;
+                apply_ppr(lx, 0, theta2, psi);
             }
 
             if (time % 2 == 0)

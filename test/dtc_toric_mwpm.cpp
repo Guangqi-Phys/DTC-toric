@@ -20,19 +20,20 @@ int main(int argc, char *argv[])
     // double threshold = 0.01;
     unsigned int lx;
     unsigned int lgz = 0;
-    int const n_time = 500;
-    int const n_simu = 200;
+    int const n_time = 1000;
+    int const n_simu = 100;
     string filename;
     double random_value;
     double perturbation;
     double perturb_o;
     double theta0;
     double theta1;
+    double theta2;
     double measur1, measur2;
     double measur1list[n_time] = {0};
     double measur2list[n_time] = {0};
 
-    perturbation = 0.5;
+    perturbation = 1;
     perturb_o = perturbation * 0.1;
 
     ofstream outfile;
@@ -66,6 +67,15 @@ int main(int argc, char *argv[])
 
             // do mwpm decoder for psi
             // mwpm_decoding(dx, dy, threshold, psi);
+
+            // add errors
+            for (int i = 0; i < nq; i++)
+            {
+                lx = 1 << i;
+                random_value = (rand() % 200 - 100) / 1000.0;
+                theta2 = 0.07 * M_PI + random_value;
+                apply_ppr(lx, 0, theta2, psi);
+            }
 
             // measure logical z operator
             if (time % 2 == 0)
