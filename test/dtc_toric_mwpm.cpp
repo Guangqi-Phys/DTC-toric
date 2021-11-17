@@ -15,7 +15,7 @@ using namespace std;
 int main(int argc, char *argv[])
 {
 
-    int dx = 3;
+    int dx = 5;
     int dy = 3;
     // double threshold = 0.01;
     unsigned int lx;
