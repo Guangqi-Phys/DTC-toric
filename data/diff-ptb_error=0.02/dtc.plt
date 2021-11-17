@@ -20,7 +20,7 @@ set ylabel "<Logical_{Z}>" font ",18"
 set xtics font ",10"
 set ytics font ",10"
 
-set xrange[0:100]
+set xrange[0:60]
 set yrange[-1:1]
 
 
@@ -33,17 +33,18 @@ set yrange[-1:1]
 # 'data_decoder_thd=0.100000_ns=1_nt=1000.dat' using 1:3 with lines lc 4 lw 2 t "With decoder",\
 
 
-set title "100 samples" font ",24"
+set title "Perturbation = 0.02, 100 samples" font ",24"
 
 
-plot 'decoder_error=0.100000_ptb=0.100000_ns=100_nt=200.dat' using 1:2 with lines ls 1 lw 2 t "with decoder",\
-'decoder_error=0.100000_ptb=0.100000_ns=100_nt=200.dat' using 1:3 with lines ls 1 lw 2 t "",\
-# 'nodecoder_shift=0.030000_error=0_ns=100_nt=1000.dat' using 1:2 with lines ls 2 lw 2 t "without decoder",\
-# 'nodecoder_shift=0.030000_error=0_ns=100_nt=1000.dat' using 1:3 with lines ls 2 lw 2 t "",\
-# 'nodecoder_theta1=0.45pi_ns=100_nt=50.dat' using 1:2 with lines ls 2 lw 2 t "0.45 pi",\
-# 'nodecoder_theta1=0.45pi_ns=100_nt=50.dat' using 1:3 with lines ls 2 lw 2 t "",\
-# 'nodecoder_theta1=0.5pi_ns=200_nt=50.dat' using 1:2 with lines ls 3 lw 2 t "0.5 pi",\
-# 'nodecoder_theta1=0.5pi_ns=200_nt=50.dat' using 1:3 with lines ls 3 lw 2 t ""
+plot 'decoder_ptb=0.020000_ns=100_nt=200.dat' using 1:2 with lines ls 1 lw 2 t "with decoder",\
+'decoder_ptb=0.020000_ns=100_nt=200.dat' using 1:3 with lines ls 1 lw 2 t "",\
+'nodecoder_ptb=0.020000_ns=100_nt=200.dat' using 1:2 with lines ls 2 lw 2 t "without decoder",\
+'nodecoder_ptb=0.020000_ns=100_nt=200.dat' using 1:3 with lines ls 2 lw 2 t "",\
+'decoder_ptb=0.140000_ns=100_nt=200.dat' using 1:2 with lines ls 3 lw 2 t "with decoder",\
+'decoder_ptb=0.140000_ns=100_nt=200.dat' using 1:3 with lines ls 3 lw 2 t "",\
+'nodecoder_ptb=0.140000_ns=100_nt=200.dat' using 1:2 with lines ls 4 lw 2 t "without decoder",\
+'nodecoder_ptb=0.140000_ns=100_nt=200.dat' using 1:3 with lines ls 4 lw 2 t "",\
+
 
 
 # plot 'data_ns=200_nt=1000.dat' using 1:2 with lines ls 1 lw 2 t "Without decoder",\

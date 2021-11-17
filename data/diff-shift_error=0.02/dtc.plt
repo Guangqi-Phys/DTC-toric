@@ -20,7 +20,7 @@ set ylabel "<Logical_{Z}>" font ",18"
 set xtics font ",10"
 set ytics font ",10"
 
-set xrange[0:100]
+set xrange[0:60]
 set yrange[-1:1]
 
 
@@ -33,13 +33,34 @@ set yrange[-1:1]
 # 'data_decoder_thd=0.100000_ns=1_nt=1000.dat' using 1:3 with lines lc 4 lw 2 t "With decoder",\
 
 
-set title "100 samples" font ",24"
+set title "with decoder, diff shift, 100 samples" font ",24"
 
+plot 'decoder_shift=-0.090000_ns=100_nt=200.dat' using 1:2 with lines ls 1 lw 2 t "shift = 0.00",\
+'decoder_shift=-0.090000_ns=100_nt=200.dat' using 1:3 with lines ls 1 lw 2 t "",\
+'decoder_shift=0.050000_ns=100_nt=200.dat' using 1:2 with lines ls 4 lw 2 t "-0.01",\
+'decoder_shift=0.050000_ns=100_nt=200.dat' using 1:3 with lines ls 4 lw 2 t "",\
+# 'nodecoder_shift=-0.020000_ns=100_nt=200.dat' using 1:2 with lines ls 2 lw 2 t "-0.02",\
+# 'nodecoder_shift=-0.020000_ns=100_nt=200.dat' using 1:3 with lines ls 2 lw 2 t "",\
+# 'nodecoder_shift=-0.030000_ns=100_nt=200.dat' using 1:2 with lines ls 3 lw 2 t "-0.03",\
+# 'nodecoder_shift=-0.030000_ns=100_nt=200.dat' using 1:3 with lines ls 3 lw 2 t "",\
+# 'nodecoder_shift=0.010000_ns=100_nt=200.dat' using 1:2 with lines ls 6 lw 2 t "0.01",\
+# 'nodecoder_shift=0.010000_ns=100_nt=200.dat' using 1:3 with lines ls 6 lw 2 t "",\
+# 'nodecoder_shift=0.030000_ns=100_nt=200.dat' using 1:2 with lines ls 7 lw 2 t "0.03",\
+# 'nodecoder_shift=0.030000_ns=100_nt=200.dat' using 1:3 with lines ls 7 lw 2 t "",\
 
-plot 'decoder_error=0.100000_ptb=0.100000_ns=100_nt=200.dat' using 1:2 with lines ls 1 lw 2 t "with decoder",\
-'decoder_error=0.100000_ptb=0.100000_ns=100_nt=200.dat' using 1:3 with lines ls 1 lw 2 t "",\
-# 'nodecoder_shift=0.030000_error=0_ns=100_nt=1000.dat' using 1:2 with lines ls 2 lw 2 t "without decoder",\
-# 'nodecoder_shift=0.030000_error=0_ns=100_nt=1000.dat' using 1:3 with lines ls 2 lw 2 t "",\
+# plot 'nodecoder_shift=0.000000_ns=100_nt=200.dat' using 1:2 with lines ls 1 lw 2 t "shift = 0.00",\
+# 'nodecoder_shift=0.000000_ns=100_nt=200.dat' using 1:3 with lines ls 1 lw 2 t "",\
+# 'nodecoder_shift=0.010000_ns=100_nt=200.dat' using 1:2 with lines ls 2 lw 2 t "0.01",\
+# 'nodecoder_shift=0.010000_ns=100_nt=200.dat' using 1:3 with lines ls 2 lw 2 t "",\
+# 'nodecoder_shift=0.030000_ns=100_nt=200.dat' using 1:2 with lines ls 3 lw 2 t "0.03",\
+# 'nodecoder_shift=0.030000_ns=100_nt=200.dat' using 1:3 with lines ls 3 lw 2 t "",\
+# 'nodecoder_shift=0.070000_ns=100_nt=200.dat' using 1:2 with lines ls 4 lw 2 t "0.07",\
+# 'nodecoder_shift=0.070000_ns=100_nt=200.dat' using 1:3 with lines ls 4 lw 2 t "",\
+# 'nodecoder_shift=0.090000_ns=100_nt=200.dat' using 1:2 with lines ls 5 lw 2 t "0.09",\
+# 'nodecoder_shift=0.090000_ns=100_nt=200.dat' using 1:3 with lines ls 5 lw 2 t "",\
+# 'decoder_shift=0.050000_ns=100_nt=200.dat' using 1:2 with lines ls 2 lw 2 t "0.05",\
+# 'decoder_shift=0.050000_ns=100_nt=200.dat' using 1:3 with lines ls 2 lw 2 t "",\
+
 # 'nodecoder_theta1=0.45pi_ns=100_nt=50.dat' using 1:2 with lines ls 2 lw 2 t "0.45 pi",\
 # 'nodecoder_theta1=0.45pi_ns=100_nt=50.dat' using 1:3 with lines ls 2 lw 2 t "",\
 # 'nodecoder_theta1=0.5pi_ns=200_nt=50.dat' using 1:2 with lines ls 3 lw 2 t "0.5 pi",\
