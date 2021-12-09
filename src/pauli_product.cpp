@@ -282,16 +282,20 @@ void apply_stabl_uniform(int dx, int dy, cx_dvec &psi)
 {
 	unsigned int sx;
 	unsigned int sz;
-	double random_value;
 	double theta0_uni;
-	srand((unsigned)time(NULL));
+	// srand((unsigned)time(NULL));
+	const int s = 81;
+
+	mt19937_64 engine3(s);
+
+	uniform_real_distribution<double> dist3(-0.1, 0.1);
 
 	for (int i = 0; i < 2 * dy; i = i + 2)
 	{
 		for (int j = 0; j < dx; j++)
 		{
-			random_value = (rand() % 200 - 100) / 1000.0;
-			theta0_uni = 0.3 * M_PI + random_value;
+			// random_value = (dist3(engine3) * 200 - 100) / 1000.0;
+			theta0_uni = 0.5 * M_PI + dist3(engine3);
 			sz = (1 << (i * dx + j)) | (1 << (((i + 1) % (2 * dy)) * dx + j)) | (1 << (((i + 1) % (2 * dy)) * dx + ((j + 1) % dx))) | (1 << (((i + 2) % (2 * dy)) * dx + j));
 			sx = (1 << (i * dx + j)) | (1 << (((i - 1 + 2 * dy) % (2 * dy)) * dx + ((j + 1) % dx))) | (1 << (i * dx + ((j + 1) % dx))) | (1 << (((i + 1) % (2 * dy)) * dx + ((j + 1) % dx)));
 			apply_ppr(sx, sz, theta0_uni, psi);
@@ -333,26 +337,4 @@ double measure_prob_positive(unsigned int x, unsigned int z, cx_dvec &psi)
 		mysum += 0.5 * psi[y] * conj(psi[y ^ x]) * phase + 0.5;
 	}
 	return real(mysum);
-}
-
-void measure_stabl(int dx, int dy, unsigned int m_stabl, cx_dvec &psi)
-{
-	unsigned int sx;
-	unsigned int sz;
-	double measure_out;
-	double random_value;
-	m_stabl = 0;
-	for (int i = 0; i < 2 * dy; i = i + 2)
-	{
-		for (int j = 0; j < dx; j++)
-		{
-			sz = (1 << (i * dx + j)) | (1 << (((i + 1) % (2 * dy)) * dx + j)) | (1 << (((i + 1) % (2 * dy)) * dx + ((j + 1) % dx))) | (1 << (((i + 2) % (2 * dy)) * dx + j));
-			measure_out = measure_prob_positive(0, sz, psi);
-			random_value = (rand() % 1000) / 1000.0;
-			if (measure_out < random_value)
-			{
-				m_stabl = m_stabl | m_stabl << (i * dx / 2 + j);
-			}
-		}
-	}
 }

@@ -13,18 +13,15 @@ using namespace std;
 int main(int argc, char *argv[])
 {
 
-    int dx = 5;
-    int dy = 3;
-    int const n_time = 200;
-    int const n_simu = 100;
+    int dx = 3;
+    int dy = 2;
+    int const n_time = 100;
+    int const n_simu = 50;
     int nq = dx * dy * 2;
     unsigned int lx;
     unsigned int lgz = 0;
-    double random_value;
     double theta1_uni;
     double theta2;
-    double perturbation;
-    double perturb_o;
     double shift;
     double error_rate;
     string filename;
@@ -34,14 +31,19 @@ int main(int argc, char *argv[])
 
     int distribution = 0; // 1 for normal distribution error
                           // 0 for uniform distribution error
+    const int s = 108;
 
-    perturbation = 1;
+    mt19937_64 engine1(s);
+    mt19937_64 engine2(s + 1);
+
     error_rate = 0.02;
     shift = 0.01;
-    perturb_o = perturbation * 0.1;
+
+    uniform_real_distribution<double> dist1(-0.01, 0.01);
+    uniform_real_distribution<double> dist2(-0.1, 0.1);
 
     ofstream outfile;
-    filename = string("data/nodecoder_") + string("error=") + to_string(error_rate) + string("_ptb=") + to_string(perturb_o) + string("_ns=") + to_string(n_simu) + "_nt=" + to_string(n_time) + string(".dat");
+    filename = string("data/nodecoder_") + string("dx=") + to_string(dx) + string("_ns=") + to_string(n_simu) + "_nt=" + to_string(n_time) + string(".dat");
 
     outfile.open(filename);
 
@@ -74,8 +76,8 @@ int main(int argc, char *argv[])
             for (int i = 0; i < nq; i++)
             {
                 lx = 1 << i;
-                random_value = (rand() % 200 - 100) / 10000.0;
-                theta2 = error_rate * M_PI + random_value;
+                // random_value = dist1(engine1) / 100.0;
+                theta2 = error_rate * M_PI + dist1(engine1);
                 apply_ppr(lx, 0, theta2, psi);
             }
 
@@ -99,8 +101,8 @@ int main(int argc, char *argv[])
                 }
                 else
                 {
-                    random_value = (rand() % 200 - 100) / 1000.0;
-                    theta1_uni = 0.5 * M_PI + shift * M_PI + random_value * perturbation;
+                    // random_value = (dist2(engine2) % 200 - 100) / 1000.0;
+                    theta1_uni = 0.5 * M_PI + shift * M_PI + dist2(engine2);
                     apply_ppr(lx, 0, theta1_uni, psi);
                 }
             }
