@@ -3,6 +3,7 @@
 #include "../include/stabilizer.hpp"
 #include "../include/pauli_product.hpp"
 #include "../include/match.hpp"
+#include "../libs/pcg-cpp/include/pcg_random.hpp"
 #include <stdlib.h>
 #include <iostream>
 #include <fstream>
@@ -15,8 +16,8 @@ using namespace std;
 int main(int argc, char *argv[])
 {
 
-    int dx = 3;
-    int dy = 3;
+    int dx = 5;
+    int dy = 2;
     // double threshold = 0.01;
     unsigned int lx;
     unsigned int lgz = 0;
@@ -33,10 +34,10 @@ int main(int argc, char *argv[])
     double measur1list[n_time] = {0};
     double measur2list[n_time] = {0};
 
-    const int s = 108;
+    pcg_extras::seed_seq_from<random_device> seed_source;
 
-    mt19937_64 engine1(s);
-    mt19937_64 engine2(s + 1);
+    pcg32 engine1(seed_source);
+    pcg32 engine2(seed_source);
 
     error_rate = 0.02;
     shift = 0.01;

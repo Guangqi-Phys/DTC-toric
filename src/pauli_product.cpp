@@ -1,5 +1,6 @@
 #include "../include/qsim.hpp"
 #include "../include/pauli_product.hpp"
+#include "../libs/pcg-cpp/include/pcg_random.hpp"
 #include <cmath>
 #include <stdlib.h>
 #include <random>
@@ -284,11 +285,11 @@ void apply_stabl_uniform(int dx, int dy, cx_dvec &psi)
 	unsigned int sz;
 	double theta0_uni;
 	// srand((unsigned)time(NULL));
-	const int s = 81;
+	pcg_extras::seed_seq_from<random_device> seed_source;
 
-	mt19937_64 engine3(s);
+	pcg32 engine3(seed_source);
 
-	uniform_real_distribution<double> dist3(-0.1, 0.1);
+	uniform_real_distribution<double> dist3(-0.5, 0.5);
 
 	for (int i = 0; i < 2 * dy; i = i + 2)
 	{
