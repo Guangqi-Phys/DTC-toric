@@ -316,12 +316,12 @@ void initial_add_phase(int dx, int dy, cx_dvec &psi)
 
 	uniform_real_distribution<double> dist_i(-0.5, 0.5);
 
-	for (int i = 0; i < 2 * dy; i = i + 2)
+	for (int i = 0; i < 2 * dy; i++)
 	{
 		for (int j = 0; j < dx; j++)
 		{
 			// random_value = (dist3(engine3) * 200 - 100) / 1000.0;
-			theta_i = 0.1 * M_PI;
+			theta_i = 0.25 * M_PI;
 			lx_i = (1 << (i * dx + j));
 			apply_ppr(lx_i, 0, theta_i, psi);
 		}
