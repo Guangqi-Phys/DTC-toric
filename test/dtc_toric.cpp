@@ -15,8 +15,8 @@ int main(int argc, char *argv[])
 {
 
     int dx = 3;
-    int dy = 2;
-    int const n_time = 50;
+    int dy = 3;
+    int const n_time = 5;
     int const n_simu = 50;
     int nq = dx * dy * 2;
     unsigned int lx;
@@ -38,27 +38,30 @@ int main(int argc, char *argv[])
     error_rate = 0.02;
     shift = 0.01;
 
-    uniform_real_distribution<double> dist1(-0.01, 0.01);
-    uniform_real_distribution<double> dist2(-0.1, 0.1);
+    uniform_real_distribution<double> dist1(-0.02, 0.02);
+    uniform_real_distribution<double> dist2(-0.02, 0.02);
 
     ofstream outfile;
-    filename = string("data/nodecoder_") + string("dx=") + to_string(dx) + string("_ns=") + to_string(n_simu) + "_nt=" + to_string(n_time) + string(".dat");
+    filename = string("data/nodecoder_") + string("ini=0.1") + string("_ns=") + to_string(n_simu) + "_nt=" + to_string(n_time) + string(".dat");
 
     outfile.open(filename);
 
-    std::default_random_engine gen;
-    std::normal_distribution<double> theta1(0.47 * M_PI, 0.02 * M_PI);
+    // std::default_random_engine gen;
+    // std::normal_distribution<double> theta1(0.47 * M_PI, 0.02 * M_PI);
 
-    srand((unsigned)time(NULL));
+    // srand((unsigned)time(NULL));
 
     for (int i = 1; i < 2 * dy; i = i + 2)
     {
         lgz = lgz | (1 << (i * dx + 1));
     }
 
+    cx_dvec psi = initial_allzero(dx, dy);
+
     for (int simu = 0; simu < n_simu; simu++)
     {
-        cx_dvec psi = initial_allzero(dx, dy);
+        psi = initial_allzero(dx, dy);
+        initial_add_phase(dx, dy, psi);
         for (int time = 1; time < n_time; time++)
         {
 

@@ -296,10 +296,34 @@ void apply_stabl_uniform(int dx, int dy, cx_dvec &psi)
 		for (int j = 0; j < dx; j++)
 		{
 			// random_value = (dist3(engine3) * 200 - 100) / 1000.0;
-			theta0_uni = 0.5 * M_PI + dist3(engine3);
+			theta0_uni = 0.25 * M_PI + dist3(engine3);
 			sz = (1 << (i * dx + j)) | (1 << (((i + 1) % (2 * dy)) * dx + j)) | (1 << (((i + 1) % (2 * dy)) * dx + ((j + 1) % dx))) | (1 << (((i + 2) % (2 * dy)) * dx + j));
 			sx = (1 << (i * dx + j)) | (1 << (((i - 1 + 2 * dy) % (2 * dy)) * dx + ((j + 1) % dx))) | (1 << (i * dx + ((j + 1) % dx))) | (1 << (((i + 1) % (2 * dy)) * dx + ((j + 1) % dx)));
 			apply_ppr(sx, sz, theta0_uni, psi);
+		}
+	}
+}
+
+void initial_add_phase(int dx, int dy, cx_dvec &psi)
+{
+	unsigned int lx_i;
+	// unsigned int sz;
+	double theta_i;
+	// srand((unsigned)time(NULL));
+	pcg_extras::seed_seq_from<random_device> seed_source_i;
+
+	pcg32 engine_i(seed_source_i);
+
+	uniform_real_distribution<double> dist_i(-0.5, 0.5);
+
+	for (int i = 0; i < 2 * dy; i = i + 2)
+	{
+		for (int j = 0; j < dx; j++)
+		{
+			// random_value = (dist3(engine3) * 200 - 100) / 1000.0;
+			theta_i = 0.1 * M_PI;
+			lx_i = (1 << (i * dx + j));
+			apply_ppr(lx_i, 0, theta_i, psi);
 		}
 	}
 }

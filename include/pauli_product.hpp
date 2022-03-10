@@ -14,5 +14,6 @@ void apply_stabl_uniform(int dx, int dy, cx_dvec &psi);
 double measure_prob_positive(unsigned int x, unsigned int z, cx_dvec &psi);
 double measure_pp_corr(unsigned int x, unsigned int z, cx_dvec &psi, cx_dvec &corr);
 void apply_stabl_evolve(int dx, int dy, double theta0, cx_dvec &psi);
+void initial_add_phase(int dx, int dy, cx_dvec &psi);
 
 #endif // QSIM_PAULI_PRODUCT_HPP_

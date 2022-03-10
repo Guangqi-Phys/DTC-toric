@@ -16,12 +16,12 @@ using namespace std;
 int main(int argc, char *argv[])
 {
 
-    int dx = 5;
-    int dy = 2;
+    int dx = 3;
+    int dy = 3;
     // double threshold = 0.01;
     unsigned int lx;
     unsigned int lgz = 0;
-    int const n_time = 50;
+    int const n_time = 5;
     int const n_simu = 50;
     int nq = dx * dy * 2;
     string filename;
@@ -42,11 +42,11 @@ int main(int argc, char *argv[])
     error_rate = 0.02;
     shift = 0.01;
 
-    uniform_real_distribution<double> dist1(-0.01, 0.01);
-    uniform_real_distribution<double> dist2(-0.1, 0.1);
+    uniform_real_distribution<double> dist1(-0.02, 0.02);
+    uniform_real_distribution<double> dist2(-0.02, 0.02);
 
     ofstream outfile;
-    filename = string("data/decoder_") + string("dx") + to_string(dx) + string("_ns=") + to_string(n_simu) + "_nt=" + to_string(n_time) + string(".dat");
+    filename = string("data/decoder_") + string("ini=0.1") + string("_ns=") + to_string(n_simu) + "_nt=" + to_string(n_time) + string(".dat");
     outfile.open(filename);
 
     // srand((unsigned)time(NULL));
@@ -68,6 +68,7 @@ int main(int argc, char *argv[])
     for (int simu = 0; simu < n_simu; simu++)
     {
         psi = initial_allzero(dx, dy);
+        initial_add_phase(dx, dy, psi);
         for (int time = 1; time < n_time; time++)
         {
 
